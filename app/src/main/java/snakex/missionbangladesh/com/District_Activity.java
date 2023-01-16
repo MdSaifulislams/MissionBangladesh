@@ -7,30 +7,20 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class District_Activity extends AppCompatActivity {
     ListView simpleList;
-    String countryList[] = {"ঢাকা",
-            "নরসিংদী",
-            "ফরিদপুর",
-            "গোপালগঞ্জ",
-            "মাদারীপুর",
-            "শরীয়তপুর",
-            "রাজবাড়ী" ,
-            "গাজীপুর" ,
-            "মানিকগঞ্জ" ,
-            "মুন্সীগঞ্জ" ,
-            "নারায়নগঞ্জ" ,
-            "টাঙ্গাইল" ,
-            "কিশোরগঞ্জ" };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_district);
-
         simpleList = (ListView)findViewById(R.id.simpleListView);
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_listview, R.id.textView, countryList);
+        ArrayList<String> district_name = (ArrayList<String>) getIntent().getSerializableExtra("key");
+        String Div_name = getIntent().getStringExtra("divname");
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.activity_listview, R.id.textView, district_name);
         simpleList.setAdapter(arrayAdapter);
-       getSupportActionBar().setTitle("ঢাকা বিভাগ");
+       getSupportActionBar().setTitle(Div_name+" বিভাগ");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
